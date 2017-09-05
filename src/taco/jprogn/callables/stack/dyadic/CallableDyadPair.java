@@ -17,4 +17,8 @@ public class CallableDyadPair implements CallableDyad {
 		return nStack;
 	}
 	
+	public String toString(){
+		return ",";
+	}
+	
 }

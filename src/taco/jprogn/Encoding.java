@@ -32,4 +32,22 @@ public class Encoding {
 		}
 		return s;
 	}
+	
+	public static byte fromChar(char s){
+		for(int b=0; b < 256; b++){
+			if(codepage[b] == s){
+				return (byte) b;
+			}
+		}
+		return 0x20;
+	}
+	
+	public static byte[] fromString(String s){
+		byte[] out = new byte[s.length()];
+		char[] chrs = s.toCharArray();
+		for(int i=0; i < chrs.length; i++){
+			out[i] = fromChar(chrs[i]);
+		}
+		return out;
+	}
 }

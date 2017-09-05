@@ -6,6 +6,7 @@ import taco.jprogn.compiler.concept.Concept;
 import taco.jprogn.scope.Callables;
 import taco.jprogn.scope.Quicks;
 import taco.jprogn.var.Var;
+import taco.jprogn.var.VarStack;
 
 public class JProgN {
 	public static Encoding encoding;
@@ -13,9 +14,15 @@ public class JProgN {
 		Quicks.Init();
 		Callables.Init();
 		
-		Concept[] arr = Tokenizer.tokenize("1234,,,".getBytes());
-		System.out.println(
-				Executor.execute(arr, new Var[]{})
-		);
+		Concept[] arr = Tokenizer.tokenize(Encoding.fromString("£¹`£\\+"));
+		
+		VarStack out = Executor.execute(arr, new Var[]{});
+		while(!out.isEmpty()){
+			if(out.size()>1){
+				System.out.println(out.pop());
+			}else{
+				System.out.print(out.pop());
+			}
+		}
 	}
 }

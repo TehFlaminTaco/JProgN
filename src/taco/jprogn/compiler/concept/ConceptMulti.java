@@ -24,7 +24,7 @@ public class ConceptMulti implements Concept {
 			call.data = new VarString(Encoding.toString(newStr));
 		}
 		if(name[0]==0x60){ // Char literal. `
-			call.data = new VarString(new String(new byte[]{name[1]}));
+			call.data = new VarString(Encoding.toString(name[1]));
 		}
 		if(name[0]==0x24){ // Number literal. $1234
 			byte[] newStr = new byte[name.length - 1];

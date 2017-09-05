@@ -15,5 +15,9 @@ public class CallableNumber implements CallableNilad {
 	public Var call() {
 		return new VarNumber(n);
 	}
+	
+	public String toString(){
+		return String.valueOf(n);
+	}
 
 }

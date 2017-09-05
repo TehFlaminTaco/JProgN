@@ -27,6 +27,7 @@ public class Executor {
 			Callable c = arr[i].getCallable();
 			if(c instanceof CallableNilad){
 				varStack.push(((CallableNilad)c).call());
+				if(varStack.peek()==null){varStack.pop();};
 			}
 			if(c instanceof CallableMonad){
 				monadStack.push((CallableMonad)c);
@@ -46,12 +47,14 @@ public class Executor {
 			Var a = varStack.pop();
 			CallableDyad d = dyadStack.pop();
 			varStack.push(d.call(a, b));
+			if(varStack.peek()==null){varStack.pop();};
 			return true;
 		}
 		if(vSize >= 1 && monadStack.size()>=1){
 			Var a = varStack.pop();
 			CallableMonad m = monadStack.pop();
 			varStack.push(m.call(a));
+			if(varStack.peek()==null){varStack.pop();};
 			return true;
 		}
 		return false;
@@ -63,11 +66,14 @@ public class Executor {
 			changed = false;
 			for(int i=0; i < arr.length; i++){
 				if(arr[i] instanceof ConceptSingle){
-					Quick q = Quicks.quicks[((ConceptSingle)arr[i]).name];
+					Quick q = Quicks.quicks[((ConceptSingle)arr[i]).name & 0xFF];
 					if(q != null){
-						changed = true;
-						arr = q.call(arr, i);
-						break;
+						Concept[] res = q.call(arr, i);
+						if(res!=null){
+							changed = true;
+							arr = res;
+							break;
+						}
 					}
 				}
 			}

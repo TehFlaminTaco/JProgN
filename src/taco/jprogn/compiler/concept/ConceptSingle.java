@@ -13,7 +13,7 @@ public class ConceptSingle implements Concept {
 
 	@Override
 	public Callable getCallable() {
-		return Callables.defaults[name];
+		return Callables.defaults[name & 0xFF];
 	}
 	
 	@Override
