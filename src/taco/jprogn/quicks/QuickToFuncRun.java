@@ -1,11 +1,16 @@
 package taco.jprogn.quicks;
 
+import taco.jprogn.callables.Callable;
+import taco.jprogn.callables.CallableDyad;
+import taco.jprogn.callables.CallableMonad;
+import taco.jprogn.callables.CallableNilad;
 import taco.jprogn.callables.generic.CallablePushVar;
 import taco.jprogn.compiler.concept.Concept;
 import taco.jprogn.compiler.concept.ConceptArray;
 import taco.jprogn.compiler.concept.ConceptCallable;
 import taco.jprogn.scope.Quicks;
 import taco.jprogn.var.VarCallable;
+import taco.jprogn.var.VarString;
 
 public class QuickToFuncRun implements Quick {
 
@@ -25,13 +30,30 @@ public class QuickToFuncRun implements Quick {
 			newArr[i] = con_arr[i];
 		}
 		Concept tar = con_arr[index+1];
-		newArr[index] = new ConceptArray(new Concept[]{new ConceptCallable(
+		Callable c = tar.getCallable();
+		if (c instanceof CallableNilad){
+			newArr[index] = new ConceptArray(new Concept[]{tar}, 0);
+		}else if(c instanceof CallableMonad){
+			newArr[index] = new ConceptArray(new Concept[]{new ConceptCallable(
 				new CallablePushVar(
-						new VarCallable(
-								tar
-						)
+					new VarCallable(
+						tar
+					)
 				)
-		), tar}, 0);
+			), tar}, 0);
+		}else if(c instanceof CallableDyad){
+			newArr[index] = new ConceptArray(new Concept[]{new ConceptCallable(
+				new CallablePushVar(
+						new VarString("£")
+					)
+				),new ConceptCallable(
+				new CallablePushVar(
+					new VarCallable(
+						tar
+					)
+				)
+			), tar}, 0);
+		}
 		for(int i=index+2; i<con_arr.length; i++){
 			newArr[i-1] = con_arr[i];
 		}

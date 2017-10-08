@@ -48,4 +48,14 @@ public class VarCallable implements Var, Callable {
 		return s;
 	}
 
+	@Override
+	public boolean truthy() {
+		return true;
+	}
+
+	@Override
+	public boolean v_equals(Var other) {
+		return other.equals(this);
+	}
+
 }

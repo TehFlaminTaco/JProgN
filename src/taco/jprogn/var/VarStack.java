@@ -55,4 +55,25 @@ public class VarStack extends Stack<Var> implements Var {
 		return this;
 	}
 
+	@Override
+	public boolean truthy() {
+		return size()>0;
+	}
+
+	@Override
+	public boolean v_equals(Var other) {
+		if(other instanceof VarStack){
+			VarStack o = other.asStack();
+			if(o.size() == size()){
+				for(int i=0; i < size(); i++){
+					if(!o.get(i).v_equals(get(i))){
+						return false;
+					}
+				}
+				return true;
+			}
+		}
+		return false;
+	}
+
 }

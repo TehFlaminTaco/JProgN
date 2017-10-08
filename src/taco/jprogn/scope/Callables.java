@@ -2,6 +2,8 @@ package taco.jprogn.scope;
 
 import taco.jprogn.callables.Callable;
 import taco.jprogn.callables.arithmetic.dyadic.CallableDyadAdd;
+import taco.jprogn.callables.arithmetic.dyadic.CallableDyadMultiply;
+import taco.jprogn.callables.arithmetic.dyadic.CallableDyadSubtract;
 import taco.jprogn.callables.generic.CallableNumber;
 import taco.jprogn.callables.stack.dyadic.CallableDyadPair;
 
@@ -12,6 +14,8 @@ public class Callables {
 		// Arithmetic
 			// Dyadic
 				defaults[0x2B] = new CallableDyadAdd();
+				defaults[0x2D] = new CallableDyadSubtract();
+				defaults[0x11] = new CallableDyadMultiply();
 		
 		// Stack
 			// Dyadic

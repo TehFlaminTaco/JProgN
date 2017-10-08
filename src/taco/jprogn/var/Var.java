@@ -9,4 +9,6 @@ public interface Var {
 	public default VarCallable asCallable(){
 		return new VarCallable(new CallablePushVar(this));
 	}
+	public boolean truthy();
+	public boolean v_equals(Var other);
 }

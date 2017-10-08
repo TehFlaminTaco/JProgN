@@ -40,4 +40,17 @@ public class VarString implements Var {
 		return stack;
 	}
 
+	@Override
+	public boolean truthy() {
+		return data.length()>0;
+	}
+
+	@Override
+	public boolean v_equals(Var other) {
+		if(other instanceof VarString){
+			return other.asString().data.equals(data);
+		}
+		return false;
+	}
+
 }

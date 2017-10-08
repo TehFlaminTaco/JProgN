@@ -14,7 +14,7 @@ public class JProgN {
 		Quicks.Init();
 		Callables.Init();
 		
-		Concept[] arr = Tokenizer.tokenize(Encoding.fromString("£¹`£\\+"));
+		Concept[] arr = Tokenizer.tokenize(Encoding.fromString("2×3+1"));
 		
 		VarStack out = Executor.execute(arr, new Var[]{});
 		while(!out.isEmpty()){

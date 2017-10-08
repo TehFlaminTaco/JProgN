@@ -1,6 +1,5 @@
 package taco.jprogn.callables.generic;
 
-import taco.jprogn.callables.Callable;
 import taco.jprogn.callables.CallableDyad;
 import taco.jprogn.var.Var;
 
